@@ -1,0 +1,42 @@
+# Ignorar diretórios do NetBeans
+**/nbproject/private/
+**/build/
+**/dist/
+**/out/
+
+# Ignorar dependências geradas pelo Maven
+**/target/
+.mvn/
+
+# Ignorar dependências geradas pelo Gradle
+**/.gradle/
+**/build/
+
+# Ignorar arquivos de cache e IDEs
+**/.classpath
+**/.project
+**/.settings/
+**/*.iml
+**/*.ipr
+**/*.iws
+**/.idea/
+
+# Ignorar logs e arquivos temporários
+**/*.log
+**/hs_err_pid*
+**/.DS_Store
+**/Thumbs.db
+
+# Ignorar arquivos do PrimeFaces Theme (caso compilados na aplicação)
+**/src/main/webapp/resources/primefaces-*/
+
+# Ignorar credenciais sensíveis
+**/*.keystore
+**/*.jks
+
+# Ignorar arquivos gerados por Application Servers
+**/*.war
+**/*.ear
+**/tmp/
+**/work/
+**/logs/
