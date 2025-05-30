@@ -11,7 +11,7 @@
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/livraria?useSSL=false&amp;serverTimezone=UTC"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
       <property name="jakarta.persistence.jdbc.password" value="A112358b.."/>
-      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level" value="OFF"/>
       <property name="javax.persistence.validation.mode" value="AUTO"/>
     </properties>
   </persistence-unit>

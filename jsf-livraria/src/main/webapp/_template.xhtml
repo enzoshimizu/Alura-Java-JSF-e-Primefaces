@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+
+    <h:body>
+        <div id="cabecalho">
+            <h:graphicImage library="img" name="logo.png" width="100"/>
+            <h1><ui:insert name="titulo"></ui:insert></h1>
+        </div>
+
+        <div id="conteudo">
+            <ui:insert name="conteudo"></ui:insert>
+        </div>
+    </h:body>
+</html>
