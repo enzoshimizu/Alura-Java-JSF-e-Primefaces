@@ -3,6 +3,7 @@ package br.com.alura.livraria.managedbean;
 import br.com.alura.livraria.bean.Autor;
 import br.com.alura.livraria.bean.Livro;
 import br.com.alura.livraria.dao.DAO;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
@@ -16,8 +17,14 @@ import java.util.List;
 @ViewScoped
 public class LivroBean implements Serializable {
 
-    private final Livro livro = new Livro();
+    private Livro livro = new Livro();
     private Integer autorId;
+    private List<Livro> livros;
+
+    @PostConstruct
+    public void init() {
+        livros = new DAO<>(Livro.class).listaTodos();
+    }
 
     public void gravar() {
         System.out.println("Gravando livro " + livro.getTitulo());
@@ -28,12 +35,27 @@ public class LivroBean implements Serializable {
             return;
         }
 
-        new DAO<>(Livro.class).adiciona(this.livro);
+        if(this.livro.getId() == null){
+            new DAO<>(Livro.class).adiciona(this.livro);
+        } else {
+            new DAO<>(Livro.class).atualiza(this.livro);
+        }
+        
+        livros = new DAO<>(Livro.class).listaTodos();
     }
 
+    public void removerAutorDoLivro(Autor autor){
+        this.livro.getAutores().remove(autor);
+    }
+    
     public void remover(Integer id) {
         Livro item = new DAO<>(Livro.class).buscaPorId(id);
         new DAO<>(Livro.class).remove(item);
+        livros = new DAO<>(Livro.class).listaTodos();
+    }
+
+    public void editar(Integer id) {
+        this.livro = new DAO<>(Livro.class).buscaPorId(id);
     }
 
     public void gravarAutor() {
@@ -47,10 +69,6 @@ public class LivroBean implements Serializable {
 
     public List<Autor> getAutoresDoLivro() {
         return livro.getAutores();
-    }
-
-    public List<Livro> getLivros() {
-        return new DAO<>(Livro.class).listaTodos();
     }
 
     public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {
@@ -75,6 +93,10 @@ public class LivroBean implements Serializable {
 
     public void setAutorId(Integer autorId) {
         this.autorId = autorId;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
     }
 
 }
